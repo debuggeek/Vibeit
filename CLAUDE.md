@@ -541,6 +541,159 @@ This agent works seamlessly with the PRD Generator agent:
 2. Use `prd-to-architecture` to convert the PRD into technical specifications
 3. Development team has both business requirements and technical architecture
 
+#### Task Breakdown (`task-breakdown`)
+
+**Purpose**: Converts architectural specifications into discrete, actionable development tasks organized in a task management system.
+
+**Location**: `.claude/agents/task-breakdown.md`
+
+**Capabilities**:
+- Analyzes ARCHITECTURE.md files
+- Breaks down architecture into actionable development tasks
+- Creates individual task markdown files with clear structure
+- Organizes tasks by category and dependency order
+- Generates comprehensive task index and progress tracking
+- Provides task management workflow
+
+**What It Generates**:
+
+For each project, creates:
+- `Tasks/` directory with `Uncompleted/` and `Completed/` subdirectories
+- Individual task markdown files (e.g., `001-setup-project.md`, `002-configure-db.md`)
+- `Tasks/README.md` with task index and progress tracking
+- Tasks organized by category:
+  - Setup & Infrastructure (001-020)
+  - Backend Development (021-100)
+  - Frontend Development (101-200)
+  - Integration (201-250)
+  - Testing (251-300)
+  - Documentation (301-320)
+  - Deployment (321-350)
+
+**Task File Structure**:
+
+Each task markdown file includes:
+- Status checkboxes (Not Started / In Progress / Completed)
+- Priority level (High / Medium / Low)
+- Clear description of what needs to be done
+- Related architecture sections
+- Dependencies on other tasks
+- Acceptance criteria (measurable outcomes)
+- Technical implementation notes
+- Files to create/modify
+- Testing requirements
+- Estimated complexity
+- References to ARCHITECTURE.md and PRD.md
+
+**How to Use**:
+
+In Claude Code, you can invoke this agent by providing an architecture file or project name:
+
+```
+"Use the task-breakdown agent to create tasks from projects/fitness-tracker/ARCHITECTURE.md"
+```
+
+Or:
+
+```
+"Break down the architecture for the water-intake-app project into tasks"
+```
+
+The agent will:
+1. Read the ARCHITECTURE.md file
+2. Optionally read PRD.md for additional context
+3. Analyze components, features, and requirements
+4. Break down into discrete, actionable tasks
+5. Create task files in `Tasks/Uncompleted/`
+6. Generate task index in `Tasks/README.md`
+7. Provide summary report
+
+**Output**: Task markdown files in `projects/[project-name]/Tasks/Uncompleted/`
+
+**Example Directory Structure After Running**:
+```
+projects/fitness-tracker/
+├── ARCHITECTURE.md
+├── PRD.md
+└── Tasks/
+    ├── README.md              # Task index and progress tracking
+    ├── Uncompleted/
+    │   ├── 001-setup-project-structure.md
+    │   ├── 002-configure-database.md
+    │   ├── 003-implement-user-model.md
+    │   ├── 021-create-auth-endpoints.md
+    │   ├── 101-create-login-page.md
+    │   └── ...
+    └── Completed/
+        └── (tasks moved here when finished)
+```
+
+**Task Management Workflow**:
+
+1. **Starting a Task**:
+   - Open task file in `Tasks/Uncompleted/`
+   - Check dependencies are completed
+   - Update status to "In Progress"
+   - Implement according to acceptance criteria
+
+2. **Completing a Task**:
+   - Verify all acceptance criteria are met
+   - Update status to "Completed"
+   - Move file from `Tasks/Uncompleted/` to `Tasks/Completed/`
+   - Update `Tasks/README.md` progress tracking
+
+3. **Tracking Progress**:
+   - View `Tasks/README.md` for complete task list
+   - Track progress by category
+   - See dependencies and task relationships
+
+**Workflow Integration**:
+
+This agent completes the full project planning workflow:
+1. Use `prd-generator` to create PRD from product idea
+2. Use `prd-to-architecture` to convert PRD into technical architecture
+3. Use `task-breakdown` to convert architecture into actionable tasks
+4. Development team has: business requirements, technical architecture, AND implementation task list
+
+**Example Task Output**:
+
+A task file (`001-setup-project-structure.md`) might look like:
+
+```markdown
+# Task 001: Setup Project Structure
+
+## Status
+- [x] Not Started
+- [ ] In Progress
+- [ ] Completed
+
+## Priority
+High
+
+## Description
+Initialize the project structure with necessary directories,
+configuration files, and development tools.
+
+## Acceptance Criteria
+- [ ] Project directory structure created
+- [ ] Package manager initialized (package.json created)
+- [ ] TypeScript configured with tsconfig.json
+- [ ] ESLint and Prettier configured
+- [ ] Git repository initialized with .gitignore
+- [ ] README.md created with setup instructions
+
+## Dependencies
+None (first task)
+
+## Files to Create/Modify
+- `package.json` - Project dependencies and scripts
+- `tsconfig.json` - TypeScript configuration
+- `.eslintrc.js` - ESLint configuration
+- `.prettierrc` - Prettier configuration
+- `.gitignore` - Git ignore rules
+- `README.md` - Project documentation
+```
+
 ### Adding New Agents
 
 To create additional custom agents:
