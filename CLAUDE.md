@@ -467,9 +467,15 @@ The agent will:
 1. Analyze your prompt
 2. Ask clarifying questions if needed
 3. Generate a comprehensive PRD document
-4. Save it with an appropriate filename
+4. Create/use the appropriate project directory in `projects/`
+5. Save the PRD as `PRD.md` in the project directory
 
-**Output**: Markdown file with complete PRD documentation
+**Output**: Markdown file saved in `projects/[project-name]/PRD.md`
+
+**Example Output Locations**:
+- `projects/fitness-tracker/PRD.md`
+- `projects/water-intake-app/PRD.md`
+- `projects/chrome-extension-blocker/PRD.md`
 
 ### Adding New Agents
 

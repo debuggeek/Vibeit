@@ -73,6 +73,31 @@ When given a product idea or prompt, create a complete PRD that includes:
 - Add tables where appropriate
 - Save the file with a descriptive name based on the product
 
+## File Location
+
+**IMPORTANT**: Always save the PRD markdown file in the appropriate project directory:
+
+1. **For Existing Projects**:
+   - Save in the project's directory: `projects/project-name/PRD.md`
+   - Or in a docs subdirectory: `projects/project-name/docs/PRD.md`
+
+2. **For New Projects**:
+   - First check if a project directory exists for this product
+   - If not, save in a new project directory: `projects/[product-name]/PRD.md`
+   - Use kebab-case for the project directory name (e.g., `water-tracker-app`)
+
+3. **File Naming**:
+   - Use `PRD.md` as the primary filename for the main requirements document
+   - If creating multiple PRDs, use descriptive names: `PRD-v2.md`, `PRD-mobile.md`, etc.
+   - Always use `.md` extension for markdown files
+
+**Example Locations**:
+- `projects/fitness-tracker/PRD.md`
+- `projects/chrome-extension-blocker/PRD.md`
+- `projects/water-intake-app/docs/PRD.md`
+
+Before creating the file, check if the project directory exists. If it doesn't exist, create it first.
+
 ## Guidelines
 
 - Ask clarifying questions if the prompt is too vague

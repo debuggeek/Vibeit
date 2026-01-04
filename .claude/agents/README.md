@@ -42,6 +42,9 @@ during work hours. Use the prd-generator agent.
 - Success metrics and KPIs
 - Risk assessment
 - Timeline and milestones
+- PRD saved as markdown file in `projects/[project-name]/PRD.md`
+
+**Output Location**: The agent automatically creates/uses the appropriate project directory and saves the PRD there.
 
 ## How to Use Agents
 
