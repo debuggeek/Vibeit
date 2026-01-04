@@ -19,7 +19,8 @@ This document serves as a comprehensive guide for AI assistants working on the V
 7. [Testing Guidelines](#testing-guidelines)
 8. [Documentation Standards](#documentation-standards)
 9. [AI Assistant Guidelines](#ai-assistant-guidelines)
-10. [Future Roadmap](#future-roadmap)
+10. [Custom Agents](#custom-agents)
+11. [Future Roadmap](#future-roadmap)
 
 ---
 
@@ -68,6 +69,9 @@ Each project in the `projects/` directory may use different technologies. When a
 
 ```
 /home/user/Vibeit/
+├── .claude/           # Claude Code configuration
+│   └── agents/        # Custom Claude agents
+│       └── prd-generator.md  # PRD generation agent
 ├── .git/              # Git repository metadata
 ├── projects/          # Container for vibe-related test projects
 │   └── README.md      # Guide for the projects directory
@@ -101,6 +105,9 @@ Vibeit is organized as a multi-project container repository:
 
 ```
 Vibeit/
+├── .claude/              # Claude Code configuration
+│   └── agents/           # Custom Claude agents (available globally)
+│       └── prd-generator.md  # PRD generation agent
 ├── .github/              # GitHub workflows and templates (if needed)
 │   └── workflows/        # CI/CD workflows
 ├── projects/             # Container for all vibe-related projects
@@ -412,6 +419,97 @@ For complex tasks:
 
 ---
 
+## Custom Agents
+
+### Available Agents
+
+The repository includes custom Claude agents in the `.claude/agents/` directory that are available across all projects.
+
+#### PRD Generator (`prd-generator`)
+
+**Purpose**: Generates comprehensive Product Requirements Documents from simple product ideas or prompts.
+
+**Location**: `.claude/agents/prd-generator.md`
+
+**Capabilities**:
+- Transforms simple product ideas into detailed PRDs
+- Creates well-structured documentation with all essential sections
+- Asks clarifying questions when needed
+- Outputs professional, developer-ready specifications
+
+**What It Generates**:
+- Executive Summary
+- Product Overview (vision, goals, target audience)
+- Functional & Non-functional Requirements
+- User Stories with Acceptance Criteria
+- Technical Considerations (tech stack, integrations, data model)
+- User Experience (flows, screens, interactions)
+- Success Metrics & KPIs
+- Timeline & Milestones
+- Risk Assessment & Mitigation
+- Open Questions & Assumptions
+
+**How to Use**:
+
+In Claude Code, you can invoke this agent by asking Claude to use it:
+
+```
+"Use the prd-generator agent to create a PRD for [your product idea]"
+```
+
+**Example**:
+```
+"Use the prd-generator agent to create a PRD for a mobile app that helps
+users track their daily water intake with reminders and goals"
+```
+
+The agent will:
+1. Analyze your prompt
+2. Ask clarifying questions if needed
+3. Generate a comprehensive PRD document
+4. Create/use the appropriate project directory in `projects/`
+5. Save the PRD as `PRD.md` in the project directory
+
+**Output**: Markdown file saved in `projects/[project-name]/PRD.md`
+
+**Example Output Locations**:
+- `projects/fitness-tracker/PRD.md`
+- `projects/water-intake-app/PRD.md`
+- `projects/chrome-extension-blocker/PRD.md`
+
+### Adding New Agents
+
+To create additional custom agents:
+
+1. Create a new file in `.claude/agents/` with a `.md` extension
+2. Add YAML frontmatter with configuration:
+   ```yaml
+   ---
+   name: agent-name
+   description: Brief description of what the agent does
+   model: sonnet  # or haiku, opus
+   tools:
+     - Write
+     - Read
+     - Glob
+     - Grep
+   ---
+   ```
+3. Write the agent's system prompt below the frontmatter
+4. Document the agent in this section of CLAUDE.md
+
+**Available Tools for Agents**:
+- `Write` - Create new files
+- `Read` - Read existing files
+- `Glob` - Find files by pattern
+- `Grep` - Search file contents
+- `Edit` - Modify existing files
+- `Bash` - Run shell commands
+- `WebFetch` - Fetch web content
+- `WebSearch` - Search the web
+
+---
+
 ## Future Roadmap
 
 ### Immediate Next Steps
@@ -489,6 +587,8 @@ Repository-level setup (completed):
 - [x] Create `projects/README.md` with guidelines
 - [x] Update main README.md with repository overview
 - [x] Update CLAUDE.md with multi-project structure
+- [x] Create `.claude/agents/` directory for custom agents
+- [x] Add PRD Generator agent (`prd-generator.md`)
 
 ### New Project Initialization Checklist
 
