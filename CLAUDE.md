@@ -477,6 +477,70 @@ The agent will:
 - `projects/water-intake-app/PRD.md`
 - `projects/chrome-extension-blocker/PRD.md`
 
+#### PRD to Architecture (`prd-to-architecture`)
+
+**Purpose**: Converts Product Requirements Documents (PRDs) into comprehensive architectural specifications.
+
+**Location**: `.claude/agents/prd-to-architecture.md`
+
+**Capabilities**:
+- Analyzes existing PRD documents
+- Translates business requirements into technical architecture
+- Makes informed technology stack decisions
+- Creates detailed system design specifications
+- Documents architectural decisions and trade-offs
+
+**What It Generates**:
+- Executive Summary & Key Architectural Decisions
+- System Architecture Overview (patterns, components, data flow)
+- Component Architecture (detailed breakdown, interfaces, dependencies)
+- Data Architecture (database design, schemas, ERDs, caching)
+- API Design (endpoints, authentication, request/response formats)
+- Technology Stack (frontend, backend, database, infrastructure)
+- Security Architecture (authentication, authorization, encryption)
+- Integration Architecture (external services, APIs, webhooks)
+- Infrastructure & Deployment Architecture
+- Performance & Scalability Architecture
+- Observability & Monitoring Strategy
+- Development Workflow & CI/CD
+- Migration & Deployment Strategy
+- Technical Debt & Future Considerations
+
+**How to Use**:
+
+In Claude Code, you can invoke this agent by providing a PRD file path or project name:
+
+```
+"Use the prd-to-architecture agent to convert projects/fitness-tracker/PRD.md into an architecture spec"
+```
+
+Or:
+
+```
+"Create an architecture specification for the water-intake-app project"
+```
+
+The agent will:
+1. Read the existing PRD document
+2. Analyze functional and non-functional requirements
+3. Make architectural decisions based on requirements
+4. Generate a comprehensive architecture specification
+5. Save the architecture spec as `ARCHITECTURE.md` in the same project directory
+
+**Output**: Markdown file saved in `projects/[project-name]/ARCHITECTURE.md`
+
+**Example Output Locations**:
+- `projects/fitness-tracker/ARCHITECTURE.md`
+- `projects/water-intake-app/docs/ARCHITECTURE.md`
+- `projects/chrome-extension-blocker/ARCHITECTURE.md`
+
+**Workflow Integration**:
+
+This agent works seamlessly with the PRD Generator agent:
+1. Use `prd-generator` to create a PRD from a product idea
+2. Use `prd-to-architecture` to convert the PRD into technical specifications
+3. Development team has both business requirements and technical architecture
+
 ### Adding New Agents
 
 To create additional custom agents:
